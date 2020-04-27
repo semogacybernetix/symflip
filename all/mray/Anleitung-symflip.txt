@@ -1,0 +1,174 @@
+*************************************************************************************
+* Bedienungsanleitung für das Programm symmetriegruppen       Version 0.0.0.2 alpha *
+*************************************************************************************
+
+
+1. Zweck des Programms
+----------------------
+Das Programm dient dazu endliche Symmetriegruppen im dreidimensionalen Raum grafisch anzuzeigen.
+
+
+2. Vorraussetzungen
+-------------------
+Es wird ein Linux-Rechner mit x86 Prozessor und X-Windows Grafik benötigt. Außerdem müssen die notwendigen Libs installiert sein.
+Welche im einzelnen das sind, muss noch ermittelt werden.
+Das Programm im jetzigen Entwicklungsstand arbeitet sehr ineffizient. Es läuft nur auf einem Kern. Auf einem Core I3 3.2 GHz werden in etwa 1 Frame pro Sekunde erreicht.
+
+
+3. Arbeitsweise
+----------------
+Nach Start des Programms bekommt der Benutzer im Terminal ein Menü angezeigt. Er wählt einen Menüpunkt aus und gibt dann die Daten ein, die das Programm abfragt.
+Nach Eingabe der Daten wird ein Fenster angezeigt, in dem entsprechend der eingegebenen Daten eine Dreh- bzw. Spiegelungsgruppe angezeigt wird. Außerdem werden im
+Terminalfenster noch weitere Daten zu den eingegebenen Daten (Drehungen, Winkel, Spiegelungen) angezeigt. Dann befindet man sich in der Simulationsschleife.
+Durch entsprechende Tasten kann man durch den visualisierten dreidimensionalen Raum fliegen. Ein Druck auf die Escape-Taste beendet den Flugmodus, das Grafik-
+fenster wird geschlossen und im Terminalfenster erscheint das Eingabeprompt. Bei Eingabe unpassender Daten schlägt die Visualisierung fehl oder das Programm
+friert ein. In diesem Fall kann das Programm gefahrlos mit der Strg-C Tastenkombination abgebrochen werden. Das funktioniert soweit beobachtet immer.
+
+
+4. die Menüpunkte
+-----------------
+
+folgende Menüpunkte stehen zur Auswahl:
+
+[1] 2 Drehspiegelungen
+
+Bei diesem Menüpunkt werden 2 Drehspiegelungen eingegeben und daraus wird dann die Gruppe erzeugt.
+Eine Drehspiegelung besteht aus einer Achse und einem Winkel. Erst werden die 3 Komponenten eines Vektors eingegeben, welcher die Drehachse symbolisiert.
+z.B. 1 0 0 wenn die x-Achse des Koordinatensystems die Drehachse sein soll. Länge und Orientierung (-v) des Vektors spielen keine Rolle. Außer es handelt
+sich um den Nullvektor. Der Nullvektor sollte nicht eingegeben werden, da er keine Drehachse symbolisiert.
+Die Eingabe des Drehwinkels erfolgt in Grad. Es können nur positive Drehwinkel eingegeben werden. Die Orientierung des Winkels spielt keine Rolle,
+da die erstellte Drehgruppe auch den Drehwinkel der anderen Orientierung enthält. Ein Minuszeichen vor den Winkel hat die Bedeutung, dass der Drehung
+noch die Inversion hinzugefügt wird. Die Inversion ist die Punktspiegelung am Ursprung und damit eine Invertierung aller 3 Koordinatenachsen.
+Die Inversion wird gebraucht, um Spiegelungen und Drehspiegelungen eingeben zu können.
+
+Ebenenspiegelung:
+Eine Ebenenspiegelung ist eine Drehung um 180° gefolgt von der Inversion. Beispielsweise wird die Spiegelung an der xy-Koordinatenebene eingegeben
+als (0 0 1) (Drehachse ist die z-Achse) mit Winkel -180°. Die x- und y- Achse werden auf ihr negatives abgebildet. Die Inversion macht diese Abbildung
+rückgängig, so dass nur noch die invertierte z-Achse übrigbleibt. Das aber entspricht genau der Spiegelung an der xy-Ebene.
+Bei einem anderen Winkel als 180° wird dem Programm die entsprechende Drehspiegelung mitgeteilt.
+
+Um zum Beispiel die Drehgruppe eines Tetraeders (T) darzustellen kann man eingeben: 1 1 1 120  und dann 1 0 0 180
+
+
+[2] 3 Drehspiegelungen
+
+Hier kann noch eine Drehspiegelung mehr eingeben werden. Das wird gebraucht z.B. wenn eine Symmetriegruppe aus 3 Ebenenspiegelungen aufgebaut werden soll.
+z.B. die Td mit  0 1 1 -180   1 0 1 -180   1 1 0 -180
+
+
+[3] 3 Ebenenwinkel
+
+3 ineinander liegende Ebenen werden gegeneinander verkippt. Die 3 Verkippungswinkel werden angegeben. Um zum Beispiel 3 sich sehr flach schneidende
+Ebenen zu erstellen kann 10 10 10 eingegeben werden. 0 0 0  und 120 120 120 sind die Grenzwerte für Ebenen mit gleichen Winkel.
+Die Gruppe wird dann aus den Spiegelungen an den Ebenen aufgebaut.
+
+
+[4] 3 Dreieckswinkel
+
+Hier werden die Ebenen bestimmt, indem die Innenwinkel eines sphärischen Dreiecks angegeben werden. Die Ebenenränder bilden dann die Seiten von 8 sphärischen Dreiecken,
+von denen ein Dreieck das sphärische Dreieck mit den angegebenen Winkeln ist.
+Die Winkelsumme muss im Bereich von 180 bis 540 Grad liegen. Grenzwerte sind: 60 60 60  und  180 180 180 für gleichseitige Dreiecke.
+Die Gruppe wird dann aus den Spiegelungen an den Ebenen aufgebaut.
+
+
+[5] 3 Ebenen anzeigen
+
+Es werden die Innenwinkel eines sphärischen Dreiecks angegeben und in der Visualisierung werden nur die Schnittebenen gezeigt. Das dient zum
+Testen, wenn man einfach nur wissen will, wie 3 sich schneidende Ebenen in den entsprechenden Winkeln aussehen.
+Weil hier keine Gruppe aufgebaut wird, können die Winkel aus einem weiten Bereich ausgewählt werden und nicht nur spezielle Kombinationen,
+die eine Gruppe ergeben.
+
+
+5. funktionierende Kombinationen
+--------------------------------
+
+für Punkt [3]:
+
+die Diedergruppen:
+
+Dreieck:            60 90 90
+Quadrat:            45 90 90
+Fünfeck:            36 90 90
+Sechseck:           30 90 90
+Siebeneck:          25.71428571 90 90
+usw.
+
+Tetraeder:          60 60 60
+                    60 60 90
+                    
+Würfel:             45 45 60
+                    45 60 90
+
+Dodekaeder:
+                    36 36 36
+                    108 108 108
+                    36 60 90
+                    60 60 108
+                    60 72 72
+                    und mehr
+
+
+für Punkt [4]:      108,120,144
+                     90,108,120
+                     und mehr                     
+
+
+
+6. der Spielmodus
+------------------
+
+Er dient dazu, sich das Objekt von allen Seiten anzuschauen, hineinzufliegen, hindurchzufliegen usw.
+
+Navigationstasten:
+
+w,s  vor, zurück
+e,f  links, rechts
+r,f  hoch, runter
+
+i,k  hoch, runter neigen         Fontanelle auf Nase, Nase auf Fontanelle
+o,l  links, rechts drehen        Nase auf rechtes Ohr, rechtes Ohr auf Nase
+p,ö  links, rechts neigen        Fontanelle auf rechtes Ohr, rechtes Ohr auf Fontanelle
+
+q,a  Schrittweite Bewegungen erhöhen/erniedrigen
+ü,ä  Schrittweite Drehungen erhöhen/erniedrigen
+
+1,2,3  (nicht auf dem Ziffernblock) den Fußball an der jeweiligen Ebene spiegeln
+
+Escape (im Spielmodus):    Programm beenden
+
+Es empfiehlt sich bei Hände wie beim 10-Fingertippsystem auf die Tastatur zu legen und für jedes Tastenpaar einen Finger zu verwenden.
+Wird diese Art der Navigation erlernt, können alle 8 Freiheitsgrade unabhängig und gleichzeitig bedient werden. Vorausgesetzt die Tastatur macht das mit.
+Die Änderung der Schrittweite dient dazu die Bewegung feiner abzustufen oder gröber zu machen. Bei den Drehungen werden die Drehwinkelschritte verkleinert oder vergrößert.
+
+
+7. Sonstiges
+-------------
+
+Das Programm schreibt eingegebene und berechnete Dateien in eine Logdatei. Diese Logdatei befindet sich in dem Verzeichnis, von dem das Programm
+aus gestartet wird und heißt quaternionenoutput.txt Sie kann jederzeit gelöscht werden ohne die Funktion des Programms zu beeinträchtigen.
+Ist die Datei nicht vorhanden, wird sie erzeugt. Liegt sie schon im Verzeichnis, werden die neuen Logdaten ans Ende der Datei angehängt,
+so dass die Datei immer länger wird. Sie heißt so, weil das Programm in früheren Entwicklungsstadien mit Quaternionen gerechnet hat.
+
+
+2020.04.08  Änderungen
+
+1. Flugmodus geändert: heißt jetzt Spielmodus, weil man jetzt spielen kann. Die schwarz-weiße Kugel (Fußball) kann auf alle Ecken des erstellten Körpers mit den 3 Ebenen gespiegelt werden.
+   außerdem wurde der Bildschirmaufbau geändert. Das Programm arbeitet nun mit einer konstanten Framerate von 10 Hz. Ist der Rechner nicht schnell genug, werden die Frames unvollständig aufgebaut.
+   Der Bildaufbau bricht nach 100 ms ab, egal, wie viele Pixel gerendert wurden. Je weniger Pixel in dieser Zeit geschafft werden, umso krissliger sieht das Bild aus.
+   Bei hohen Geschwindigkeiten tritt eine deutliche Unschärferelation ein. Bei geringeren Geschwindigkeiten wird das Bild schärfer.
+   
+2. Tastaturbelegung geändert. die Schrittweitenänderungstasten wurden geändert, weil die alte Belegung unpraktisch war. Sie wird jetzt mit den kleinen Fingern gemacht und ist damit unabhängig von
+   den anderen Tastenfunktionen
+   
+3. kleine Designänderungen (Farben) von Hintergrund, den Ebenen. Die Ebenen wurden leichter merkbar eingefärbt. 1. Ebene rot, 2. Ebene grün, 3. Ebene blau
+
+4. Die Formel für die Umrechnung der Ebenenwinkel in Spiegelachsen wurde stabilisiert. Alle Extremfälle und Randbereiche werden erfasst und korrekt berechnet. Ungültige Parameter (nicht erfüllte Dreiecksungleichung)
+   werden abgefangen.
+
+
+2020.04.27 Änderungen
+
+1. Das Spiel heißt jetzt symflip
+2. Compilierung mit cd symflip/all/mray          make symmetriegruppen
+3. Änderung der Farben
+4. Im Spiel werden besuchte Punkte mit einer Kugel markiert. Die Implementation ist noch fehlerhaft. Dadurch kommt es bei einigen Positionen vor, dass sie nicht markiert werden, obwohl der Punkt besucht wurde.
