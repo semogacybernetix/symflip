@@ -122,7 +122,7 @@ Er dient dazu, sich das Objekt von allen Seiten anzuschauen, hineinzufliegen, hi
 Navigationstasten:
 
 w,s  vor, zurück
-e,f  links, rechts
+e,d  links, rechts
 r,f  hoch, runter
 
 i,k  hoch, runter neigen         Fontanelle auf Nase, Nase auf Fontanelle
