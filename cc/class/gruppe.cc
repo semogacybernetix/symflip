@@ -1,9 +1,6 @@
 #include "gruppe.h"
 
-//#include <streamio>  // printf
-#include <iostream>  // printf
-
-
+#include <iostream>  // printf zum debuggen
 
 real gquant= 1e-8;
 

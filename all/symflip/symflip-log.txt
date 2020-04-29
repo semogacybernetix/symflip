@@ -1,0 +1,30 @@
+----------------
+Logdatei symflip
+----------------
+
+2020.04.08
+
+1. Flugmodus geändert: heißt jetzt Spielmodus, weil man jetzt spielen kann. Die schwarz-weiße Kugel (Fußball) kann auf alle Ecken des erstellten Körpers mit den 3 Ebenen gespiegelt werden.
+   außerdem wurde der Bildschirmaufbau geändert. Das Programm arbeitet nun mit einer konstanten Framerate von 10 Hz. Ist der Rechner nicht schnell genug, werden die Frames unvollständig aufgebaut.
+   Der Bildaufbau bricht nach 100 ms ab, egal, wie viele Pixel gerendert wurden. Je weniger Pixel in dieser Zeit geschafft werden, umso krissliger sieht das Bild aus.
+   Bei hohen Geschwindigkeiten tritt eine deutliche Unschärferelation ein. Bei geringeren Geschwindigkeiten wird das Bild schärfer.
+   
+2. Tastaturbelegung geändert. die Schrittweitenänderungstasten wurden geändert, weil die alte Belegung unpraktisch war. Sie wird jetzt mit den kleinen Fingern gemacht und ist damit unabhängig von
+   den anderen Tastenfunktionen
+   
+3. kleine Designänderungen (Farben) von Hintergrund, den Ebenen. Die Ebenen wurden leichter merkbar eingefärbt. 1. Ebene rot, 2. Ebene grün, 3. Ebene blau
+
+4. Die Formel für die Umrechnung der Ebenenwinkel in Spiegelachsen wurde stabilisiert. Alle Extremfälle und Randbereiche werden erfasst und korrekt berechnet. Ungültige Parameter (nicht erfüllte Dreiecksungleichung)
+   werden abgefangen.
+
+
+2020.04.27
+
+1. Das Spiel heißt jetzt symflip
+2. Compilierung mit cd symflip/all/mray          make symmetriegruppen
+3. Änderung der Farben
+4. Im Spiel werden besuchte Punkte mit einer Kugel markiert. Die Implementation ist noch fehlerhaft. Dadurch kommt es bei einigen Positionen vor, dass sie nicht markiert werden, obwohl der Punkt besucht wurde.
+
+2020.04.29
+
+1. Codeumstrukturierung: game Klasse hinzugefügt, rayklasse reduziert und nach game Klasse kopiert (flugsiumu objekt), Dateien umbenannt, symflip.cc

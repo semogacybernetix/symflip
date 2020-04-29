@@ -1,10 +1,7 @@
 #ifndef ray_h
 #define ray_h
 
-#include "vektor.h"
-#include "gruppe.h"
-#include "../screen/vscr.h"
-#include "../keyboard/vkbd.h"
+#include "../screen/vscr.h"  // für die screen-Textur aus einem Screen (z.B. jpeg-Datei) texturieren zu können
 
 // ------- Schnittpunktklasse ------------------------------------------------------------------------------------------------
 
@@ -309,42 +306,6 @@ struct cwelt : public clmannig
   cbasis3        augbasis;
   cvektor4       augdrehaw;
   cvektor3       himmelfarbe;
-  };
-
-struct cflugsimu
-  {
-  cflugsimu (cwelt* pwelt, clkeyboard* plkeyboard, clscreen* plscreen);
-  void welttoscreenl ();
-  void welttoscreenz ();
-  void welttoscreentakt ();
-  void welttoscreenthread (integer pthreadnr);
-  void fliege ();
-  void fliegespiel (cbasis3& spiegelebenen, ckoerper* bewkugel);
-  void fliegespieltakt (cbasis3& spiegelebenen, ckoerper* bewkugel);
-  void fliegethread ();
-  void fliegetakt ();
-  void fliege2 ();
-
-  integer  threadanz;           // Anzahl der Threads (von außen setzbar)
-  real     framerate;           // Framerate fürs Taktfliegen (von außen setzbar)
-  
-  private:
-  integer      flugsimutps;     // Ticks pro Sekunde
-  integer      flugsimudatum;   // gegenwärtiges Zeitsegment in dem sich das Programm befindet
-  integer      pixelpos;
- 
-  cwelt*       welt;
-  clkeyboard*  keyboard;
-  clscreen*    screen;
-  real         xoff, yoff;
-  real         bewstep, drehstep;
-
-  struct cpixel
-    {
-    integer x, y;
-    };
-
-  cpixel*     pixels;
   };
 
 // --------------------------------------------------------------------------------------------

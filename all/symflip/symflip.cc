@@ -8,7 +8,7 @@
 
 // Berechnungen
 #include "../../cc/class/gruppe.h"
-#include "../../cc/class/ray.h"
+#include "../../cc/class/game.h"
 
 // Ausgabemedien
 #include "../../conio/gruppecon.h"
